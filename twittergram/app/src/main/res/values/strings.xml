@@ -11,4 +11,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="sign_in">Sign In</string>
     <string name="don_t_have_an_account_register_now">Don\'t have an account? Register now!</string>
+    <string name="title_activity_home">home</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

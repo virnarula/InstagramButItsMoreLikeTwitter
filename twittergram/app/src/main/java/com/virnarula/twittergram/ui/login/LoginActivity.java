@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -22,9 +23,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.LogInCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.virnarula.twittergram.R;
 import com.virnarula.twittergram.ui.login.LoginViewModel;
 import com.virnarula.twittergram.ui.login.LoginViewModelFactory;
+
+import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,6 +50,13 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        final TextView registerNewAccount = findViewById(R.id.signUp);
+
+        Parse.initialize(new Parse.Configuration.Builder(this)
+                .applicationId("APPLICATION_ID")
+                .server("http://10.0.2.2:1337/parse/")
+                .build()
+        );
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -95,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         };
+
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -113,8 +130,27 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+
+                ParseUser.logInInBackground(usernameEditText.getText().toString(), passwordEditText.getText().toString(), new LogInCallback() {
+                    @Override
+                    public void done(ParseUser user, ParseException e) {
+                        if (e == null) {
+                            Log.i("Sign in", "Sucessful");
+                            loginViewModel.login(usernameEditText.getText().toString(),
+                                    passwordEditText.getText().toString());
+                        } else {
+                            Log.i("Sign in", "Failed");
+                            Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        registerNewAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerNewAccount(v);
             }
         });
     }
@@ -130,6 +166,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void registerNewAccount(View view) {
-
+        return;
     }
 }
