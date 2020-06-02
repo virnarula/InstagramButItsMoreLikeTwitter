@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         user.setPassword("hello");
         user.signUpInBackground();
 */
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, home.class);
         startActivity(intent);
 
     }

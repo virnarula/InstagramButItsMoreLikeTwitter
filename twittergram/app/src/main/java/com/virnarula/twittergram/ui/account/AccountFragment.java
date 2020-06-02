@@ -1,9 +1,10 @@
-package com.virnarula.twittergram.ui.notifications;
+package com.virnarula.twittergram.ui.account;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,16 +15,18 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.virnarula.twittergram.R;
 
-public class NotificationsFragment extends Fragment {
+public class AccountFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private AccountViewModel notificationsViewModel;
+    private LinearLayout layout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
-                ViewModelProviders.of(this).get(NotificationsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
+                ViewModelProviders.of(this).get(AccountViewModel.class);
+        layout = (LinearLayout) container.findViewById(R.id.accountLinearLayout);
+        View root = inflater.inflate(R.layout.fragment_account, container, false);
+        final TextView textView = root.findViewById(R.id.textView);
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -32,4 +35,11 @@ public class NotificationsFragment extends Fragment {
         });
         return root;
     }
+
+    public void populateAccountLayout() {
+
+//        layout.add();
+    }
+
+
 }
