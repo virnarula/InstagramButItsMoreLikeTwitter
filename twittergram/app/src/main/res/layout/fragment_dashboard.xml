@@ -8,7 +8,7 @@
     android:layout_marginBottom="?attr/actionBarSize">
 
 
-    <include layout="@layout/content_fragment_first" />
+    <include layout="@layout/content_fragment_dashboard" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -18,7 +18,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="#6200EE"
         app:srcCompat="@android:drawable/ic_menu_camera"
-        >
+        tools:ignore="OnClick">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".uploadImage"></activity>
+        <activity android:name=".UploadImageActivity"></activity>
         <activity
             android:name=".home"
             android:label="@string/title_activity_home" />
