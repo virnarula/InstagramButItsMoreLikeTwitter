@@ -40,7 +40,7 @@ public class DashboardFragment extends Fragment {
 //        dashboardPhotoScroller.setMinimumHeight(heightWithoutButton - takeImageButton.getHeight());
         dashboardViewModel =
                 ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View root = inflater.inflate(R.layout.fragment_upload, container, false);
 
         fab = (FloatingActionButton) root.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

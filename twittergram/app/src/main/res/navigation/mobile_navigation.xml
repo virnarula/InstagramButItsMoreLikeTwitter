@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_upload"
         android:name="com.virnarula.twittergram.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:label="@string/upload"
+        tools:layout="@layout/fragment_upload" />
 
     <fragment
         android:id="@+id/navigation_notifications"
